@@ -1,2 +1,2 @@
 #!/bin/bash
-ls 
+chown -v StarWars_IV_episode
