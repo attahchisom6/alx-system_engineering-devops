@@ -1,2 +1,2 @@
 #/bin/bash
-encode decode ascii
+tr 'a-zA-Z' 'n-za-mN-ZA-M'
