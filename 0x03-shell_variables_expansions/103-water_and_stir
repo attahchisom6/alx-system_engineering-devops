@@ -1,2 +1,2 @@
 #!/bin/bash
-printf '%o\n' $(($[$water#$WATER]+$[$stir.#$STIR]))|tr 01234567 bestchol
+printf '%d\n' $(($[3#$(echo $WATER|tr water 12345)]+$[3#$(echo STIR|tr stir. 12345)]))|tr 12345678 bestchol
