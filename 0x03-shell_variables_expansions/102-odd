@@ -1,2 +1,2 @@
-#/bin/bash
-ls -odd
+#!/bin/bash
+paste -d, --|cut -d, -f1
