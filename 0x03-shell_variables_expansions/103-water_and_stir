@@ -1,2 +1,2 @@
 #/bin/bash
-echo $(([$WATER]bestchol+[$STIR]bestchol))
+printf '%d\n' $(($[water#$WATER]+$[stir.#$STIR]))|tr 12345678 bestchol
