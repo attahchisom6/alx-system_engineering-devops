@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#display content pf the current directory in a list format where
+#only the names after the first hyphen is displayes
+
+list=$(ls .)
+for k in $list
+do
+	echo "$k" | cut -d '-' -f2
+done
