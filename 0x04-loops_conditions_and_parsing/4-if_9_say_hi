@@ -2,10 +2,10 @@
 #print strings in a loop with condition
 #on the 9th iteration display hi
 
-n=0
-while [ $n -lt 10 ]
+n=1
+while [ $n -le 10 ]
 do
-	if [ $n -eq 9 ]
+	if [ $n -eq 10 ]
 	then
 		echo "Hi"
 	fi
