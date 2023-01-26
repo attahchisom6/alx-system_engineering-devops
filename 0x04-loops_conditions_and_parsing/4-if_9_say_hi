@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#print strings in a loop with condition
+
+n=1
+while [ $n -le 10 ]
+do
+	if [ $n -eq 9 ]
+	then
+		echo "hi"
+	else
+		echo "Best School"
+	fi
+	n=$((n + 1))
+done
