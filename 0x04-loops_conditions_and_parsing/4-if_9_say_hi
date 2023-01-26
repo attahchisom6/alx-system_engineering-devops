@@ -2,14 +2,13 @@
 #print strings in a loop with condition
 #on the 9th iteration display hi
 
-n=1
-while [ $n -le 10 ]
+n=0
+while [ $n -lt 10 ]
 do
 	if [ $n -eq 9 ]
 	then
 		echo "Hi"
-	else
-		echo "Best School"
 	fi
+	echo "Best School"
 	((n++))
 done
