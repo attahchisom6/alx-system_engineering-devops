@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #print strings in a loop with condition
+#on the 9th iteration display hi
 
 n=1
 while [ $n -le 10 ]
