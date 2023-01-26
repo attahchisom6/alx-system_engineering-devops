@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#this script will print things at the 4th, 9th and 17th interation
+
+n=1
+while [ $n -le 20 ]
+do
+	if [ $n -eq 5 ]
+	then
+		echo "bad luck from china"
+	fi
+
+	if [ $n -eq 10 ]
+	then
+		echo "bad luck from japan"
+	fi
+
+	if [ $n -eq 18 ]
+	then
+		echo "bad luck from italy"
+	fi
+
+	echo "$n"
+	((n++))
+done
