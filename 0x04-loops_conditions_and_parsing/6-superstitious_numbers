@@ -4,21 +4,13 @@
 n=1
 while [ $n -le 20 ]
 do
-	if [ $n -eq 5 ]
-	then
-		echo "bad luck from china"
-	fi
-
-	if [ $n -eq 10 ]
-	then
-		echo "bad luck from japan"
-	fi
-
-	if [ $n -eq 18 ]
-	then
-		echo "bad luck from italy"
-	fi
-
 	echo "$n"
+
+	case $n in
+		"4") echo "bad luck from China";;
+		"9") echo "bad luck from Japan";;
+		"17") echo "bad luck from Italy";;
+	esac
+
 	((n++))
 done
