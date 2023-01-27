@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#script to print a list of processes, including those
+#without format TTY
+
+ps -A uf
