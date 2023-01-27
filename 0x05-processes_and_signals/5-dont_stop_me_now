@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#this script will use a kill command to send a SIGKILL interupt
+#to our specfied running program
+
+prog_pid="$(pgrep -f 4-to_infinity_and_beyond)"
+kill $prog_pid
