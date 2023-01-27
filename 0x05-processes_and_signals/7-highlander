@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#this script runs to infinity and resist kill order by pkill and
+#instead prints a mesaage
+
+message="I am invinsible!!!"
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+	trap 'echo $message' SIGTERM
+done
