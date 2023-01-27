@@ -3,4 +3,4 @@
 #to our specfied running program
 
 prog_pid="$(pgrep -f 4-to_infinity_and_beyond)"
-kill $prog_pid
+kill "$prog_pid"
