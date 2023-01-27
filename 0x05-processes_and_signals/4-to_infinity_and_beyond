@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#script that prints an infinite loop
+
+n=1
+while (($n))
+do
+	echo "To infinity and beyond"
+	sleep 2
+done
