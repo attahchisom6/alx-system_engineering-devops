@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#this w-ill iterate and print id and its child process
+
+pgrep -l bash
