@@ -12,13 +12,13 @@ then
 
 elif [ "$1" == "stop" ]
 then
-	kill "$(cat /var/run/my_pocess.pid)"
+	kill "$(cat $file)"
 	rm -f $file
 	echo "manage_my_processs stopped"
 
 elif [ "$1" == "restart" ]
 then
-	kill "$(cat /var/run/my_process.pid)"
+	kill "$(cat $file)"
 	rm -f $file
 	
 	./manage_my_process &
