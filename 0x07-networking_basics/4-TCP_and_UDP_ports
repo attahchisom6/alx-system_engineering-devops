@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 #A bash script that displays lisening port:
 #that only show listening socket.
-#That shows the pid and name of the programm to ehich each socket
-#belongs
+#That shows the pid and name of the programm to ehich each socket belongs
 netstat -l --program

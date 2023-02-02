@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#this script will to check if google with the ip 8.8.8.8 is
+#this script will check if google with the ip 8.8.8.8 is
 #reachable (ICMP) usingvthe ping command
 
 if [ $# -eq 0 ]
