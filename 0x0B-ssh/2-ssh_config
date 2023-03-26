@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#script to configure an server to use ssh-key and not password
+
+Host
+	passwordAuthentication no
+
+Hostname 54.167.184.230
+username ubuntu
+IdentityFile ~/ssh/school
