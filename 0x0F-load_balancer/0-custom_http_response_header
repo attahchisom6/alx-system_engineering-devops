@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#A scripth that configures bginx with a custom header on web_01 and web_02
+sudo apt-get -y upgrade
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+#configure firewall to allow Nginx bypass
+sudo ufw allow 'Nginx HTTP'
+
+#creating web_base and content to store in it
+web_base="$(mkdir -p /var/www/)"
+sudo chmod 755 -R $web_base
+
+#writing data into our web base
+echo "Hello World!" | sudo tee $web_base/html/index.html
+echo "Ceci n'est pas une page" | sudo tee $web/html/404.html
+
+#defining a custom header for web_01 and web_02
+HEADER="\\\n\tadd_header X-Served-By $hostname\n"
+
