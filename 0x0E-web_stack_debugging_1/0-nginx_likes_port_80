@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#This script will reconfigure nginx to listen to port 80
+
+config_file="/etc/nginx/sites-available/default"
+linked_file="/etc/nginx/sites-enabled/default"
+sudo cp "$config_file" "$config_file.backup"
+ln -sf "$config_file" "$linked_file"
+
+sudo service nginx restart
