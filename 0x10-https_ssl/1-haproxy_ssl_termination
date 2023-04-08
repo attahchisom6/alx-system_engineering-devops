@@ -35,9 +35,9 @@ defaults
 
 frontend holb20231tk0q1.tech
         bind 0:80
-	bind *:443 ssl crt /etc/haproxy/certs/www.holb20231tk0q1.tech.pem
-	http-request redirect scheme https code 301 if !{ ssl_fc }
-	stats uri /haproxy?stats
+	bind 0:443 ssl crt /etc/haproxy/certs/www.holb20231tk0q1.tech.pem
+	http-request redirect scheme https code 301 if unless { ssl_fc }
+	option fowardfor
         default_backend web_servers
 
 backend web_servers
