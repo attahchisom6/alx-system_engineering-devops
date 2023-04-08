@@ -33,15 +33,17 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-frontend holb20231tk0q1.tech
-        bind 0:80
-	bind 0:443 ssl crt /etc/haproxy/certs/www.holb20231tk0q1.tech.pem
-	http-request redirect scheme https code 301 unless { ssl_fc }
-	option forwardfor
-        default_backend web_servers
+frontend http
+        bind *:80
+	default_backend Mose_servers
 
-backend web_servers
+frontend secure_https
+	bind *:443 ssl crt /etc/haproxy/certs/www.holb20231tk0q1.tech.pem
+	http-request redirect scheme https code 301 unless { ssl_fc }
+        default_backend Mose_servers
+
+backend Mose_servers
         balance roundrobin
-        server 153318-web-01 54.144.221.216:80
-        server 153318-web-02 54.209.215.95:80
+        server 153318-web-01 54.144.221.216:80 check
+        server 153318-web-02 54.209.215.95:80 check
 
