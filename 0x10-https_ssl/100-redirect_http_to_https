@@ -35,9 +35,6 @@ defaults
 
 frontend http
         bind *:80
-	default_backend Mose_servers
-
-frontend secure_https
 	bind *:443 ssl crt /etc/haproxy/certs/www.holb20231tk0q1.tech.pem
 	http-request set-header X-forwarded-proto https
 	redirect scheme https code 301 if !{ ssl_fc }
