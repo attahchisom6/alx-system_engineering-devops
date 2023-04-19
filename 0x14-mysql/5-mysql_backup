@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #A script to backup our data with help of mysqldump, archive it with tar for storage in a dufferent database
 
-mysqldump -uroot -p "$1" --all-databases > backup.sql
+mysqldump -uroot -p"$1" --all-databases > backup.sql
 
 tar -cvzf "$(date +%d-%m-%Y)".tar.gz backup.sql
