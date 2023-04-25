@@ -10,16 +10,17 @@ if __name__ == "__main__":
     url = "{}/users".format(source)
 
     users = get(url).json()
+    dictt = {}
     for response in users:
         userName = response.get("username")
         user_id = response.get("id")
 
         refined_url = "{}/{}".format(url, user_id)
-        todo_url = "{}/todos".format(refined_url)
+        todo_url = "{}/todos/".format(refined_url)
         todo_response = get(todo_url)
 
         tasks = todo_response.json()
-        dictt = {user_id: []}
+        dictt[user_id] = []
         for task in tasks:
             dictt[user_id].append({
                     "task": task.get("title"),
