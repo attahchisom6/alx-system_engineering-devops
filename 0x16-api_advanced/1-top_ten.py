@@ -18,4 +18,5 @@ def top_ten(subreddit):
         ten_titles = j_response.get('children')[:10]
         for post in ten_titles:
             print(post.get('data').get('title'))
-    print(None)
+    else:
+        print(None)
