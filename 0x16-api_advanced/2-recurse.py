@@ -19,16 +19,15 @@ def count_post_byRecursion(subreddit, hot_post=[], after="", count=0):
             }
 
     response = requests.get(
-            url, headers=headers, params=response_control, allow_redirects=False)
-    if response.status_code == 200:
+            url, headers=headers, params=response_control,
+            allow_redirects=False)
+    if response.status_code != 404:
         j_response = response.json().get('data')
-        titles = j_response.get('children')
         after = j_response.get('after')
         count += j_response.get('dist')
-        for post in titles:
+        for post in j_response.get('children'):
             hot_post.append(post.get('data').get('title'))
 
         if after is not None:
             return count_post_byRecursion(subreddit, hot_post, after, count)
-        return hot_post
-    return None
+    return hot_post
