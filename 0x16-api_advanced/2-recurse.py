@@ -21,7 +21,7 @@ def recurse(subreddit, hot_post=[], after="", count=0):
     response = requests.get(
             url, headers=headers, params=response_control,
             allow_redirects=False)
-    if response.status_code != 404:
+    if response.status_code == 200:
         j_response = response.json().get('data')
         after = j_response.get('after')
         count += j_response.get('dist')
