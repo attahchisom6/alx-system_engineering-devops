@@ -5,7 +5,7 @@ script to the host posts (latest) of subredit of a redit api
 import requests
 
 
-def count_post_byRecursion(subreddit, hot_post=[], after="", count=0):
+def recurse(subreddit, hot_post=[], after="", count=0):
     """
     querries a subreddit and gets the number of times a word appears
     in the latest 100th post by recusion in each page of the api
@@ -29,5 +29,5 @@ def count_post_byRecursion(subreddit, hot_post=[], after="", count=0):
             hot_post.append(post.get('data').get('title'))
 
         if after is not None:
-            return count_post_byRecursion(subreddit, hot_post, after, count)
+            return recurse(subreddit, hot_post, after, count)
     return hot_post
