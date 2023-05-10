@@ -1,30 +1,34 @@
 #!/usr/bin/python3
-"""Function to query a list of all hot posts on a given Reddit subreddit."""
+"""
+script to the host posts (latest) of subredit of a redit api
+"""
 import requests
 
 
-def recurse(subreddit, hot_list=[], after="", count=0):
-    """Returns a list of titles of all hot posts on a given subreddit."""
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
-    headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-    }
-    params = {
-        "after": after,
-        "count": count,
-        "limit": 100
-    }
-    response = requests.get(url, headers=headers, params=params,
-                            allow_redirects=False)
-    if response.status_code == 404:
-        return None
+def recurse(subreddit, hot_post=[], after="", count=0):
+    """
+    querries a subreddit and gets the number of times a word appears
+    in the latest 100th post by recusion in each page of the api
+    """
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    headers = {"User-Agent": "Mozilla/5.0"}
+    response_control = {
+            "after": after,
+            "count": count,
+            "limit": 100
+            }
 
-    results = response.json().get("data")
-    after = results.get("after")
-    count += results.get("dist")
-    for c in results.get("children"):
-        hot_list.append(c.get("data").get("title"))
+    response = requests.get(
+            url, headers=headers, params=response_control,
+            allow_redirects=False)
+    if response.status_code == 200:
+        j_response = response.json().get('data')
+        after = j_response.get('after')
+        count += j_response.get('dist')
+        for post in j_response.get('children'):
+            hot_post.append(post.get('data').get('title'))
 
-    if after is not None:
-        return recurse(subreddit, hot_list, after, count)
-    return hot_list
+        if after is not None:
+            return recurse(subreddit, hot_post, after, count)
+        return hot_post
+    return None
