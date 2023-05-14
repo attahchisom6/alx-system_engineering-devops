@@ -10,7 +10,8 @@ On may 14th 2023, we experienced a sever breakdown in one of our servers, so tha
 On 14th may 2023 (12pm GMT +1) we experienced a server break down, in one of our master servers that runs on nginx. Our customers acessing this server experienced a _**502 Bad Gateway error**_. The root cause being pushing an application configured by a web framework to run on apache2. The result being that all services made to be handled by this application was rendered ineffective.
 
 ## IMPACT
-	The result of the above error was a 100% impact on our clients and their Buisnesses, as important information submitted by these clients on server was not being delivered when requested.
+
+The result of the above error was a 100% impact on our clients and their Buisnesses, as important information submitted by these clients on server was not being delivered when requested.
 
 ## DETECTION AND DURATION OF THE ISSUE
 This afore mentioned issue lasted for a period of 48 minutes (12:00 pm - 12: 48pm) GMT +1. The issue was first noticed at 12:10 pm on the recipient of alerts from the datadog community monitoring agent, followed by clients mail regarding the issue whereupon proper measuress were implemented to handle the issue
@@ -30,7 +31,8 @@ The root cause is pushing an application made to run on apache2 to a server made
 4. At 12:48 GMT +1 another test was run, but this time on the master server, and everything was confirmed to be well as planned. Feedback from our clients also confirmed that the issue was fixed as they could now asses thier contents and can also make use of our new deployed application
 
 ## PREVENTIVE MEASURES
-	These are the preventive measures set to handle prevent a reoccurrrence of thes ussues in the future.
+
+These are the preventive measures set to handle prevent a reoccurrrence of thes ussues in the future.
 
 1. Since due to different reasons, each of our severs run on different kinds of web infrastructures like apache2 or nginx etc. its best that before any update were pushed to server, a proper analysis of the server must be first observed and taking into account.
 
