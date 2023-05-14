@@ -9,7 +9,14 @@ On may 14th 2023, we experienced a sever breakdown in one of our servers, so tha
 On 14th may 2023 (12pm GMT +1) we experienced a server break down, in one of our master servers that runs on nginx. Our customers acessing this server experienced a _**502 Bad Gateway error**_. The root cause being pushing an application configured by a web framework to run on apache2. The result being that all services made to be handled by this application was rendered ineffective.
 
 ## IMPACT
-The result of the above error was a 100% impact on our clients and their Buisnesses, as important information submitted by these clients on server was not being delivered when requested.
+	The result of the above error was a 100% impact on our clients and their Buisnesses, as important information submitted by these clients on server was not being delivered when requested.
 
 ## DETECTION AND DURATION OF THE ISSUE
 This afore mentioned issue lasted for a period of 48 minutes (12:00 pm - 12: 48pm) GMT +1. The issue was first noticed at 12:10 pm on the recipient of alerts from the datadog community monitoring agent, followed by clients mail regarding the issue whereupon proper measuress were implemented to handle the issue
+
+# MEASURES TAKEN TO ARREST THE ISSUE
+1. Upon detection of the ussue, we removed the defect application causing the issue. Then a roll back was made to restore the server to its previous setting at 12: 30 pm Gmt.
+
+2. A test was run, and it was confirmef that every thing was back to Normal.
+
+3. The 
