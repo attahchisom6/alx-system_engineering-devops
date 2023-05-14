@@ -1,7 +1,7 @@
 # **POST MORTEM: A SERVER BREAK DOWN INCIDENCE REPORT**
 > WRITTEN BY ATTAH CHISOM MOSES
 
-![](https://www.pexels.com/photo/doll-wearing-eyeglasses-160472/)
+![](https://i.imgur.com/dFAiKAG.jpeg)
 
 On may 14th 2023, we experienced a sever breakdown in one of our servers, so that the many of our clients using the api related to this server was unable to acsess it contents for their various purposes. We sincerely apologize to client who may have a financial loss or any other loss due to this incovinience.
 
