@@ -1,7 +1,7 @@
 # **POST MORTEM: A SERVER BREAK DOWN INCIDENCE REPORT**
 > WRITTEN BY ATTAH CHISOM MOSES
 
-![](https://https://twitter.com/i/status/834887829486399488)
+![](https://www.google.com/search?client=firefox-b-m&channel=ts&biw=320&bih=256&tbm=isch&sxsrf=APwXEdc9bJhhmi-o6p0O0qUai18nFUhrzw%3A1684074424436&sa=1&q=A+joke+on+issue+summary&oq=A+joke+on+issue+summary&aqs=mobile-gws-lite..#imgrc=xIAhgx18xWw8EM)
 
 On may 14th 2023, we experienced a sever breakdown in one of our servers, so that the many of our clients using the api related to this server was unable to acsess it contents for their various purposes. We sincerely apologize to client who may have a financial loss or any other loss due to this incovinience.
 
