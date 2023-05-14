@@ -7,8 +7,6 @@ On may 14th 2023, we experienced a sever breakdown in one of our servers, so tha
 
 ## Issue Summary
 
-![](https://i.imgur.com/jbsozvr.jpeg)
-
 On 14th may 2023 (12pm GMT +1) we experienced a server break down, in one of our master servers that runs on nginx. Our customers acessing this server experienced a _**502 Bad Gateway error**_. The root cause being pushing an application configured by a web framework to run on apache2. The result being that all services made to be handled by this application was rendered ineffective.
 
 ## IMPACT
