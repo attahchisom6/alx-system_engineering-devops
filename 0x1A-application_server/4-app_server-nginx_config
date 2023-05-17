@@ -1,0 +1,43 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	add_header X-Served-By 153318-web-01;
+	root /var/www/html;
+	index index.html index.htm;
+
+	location /hbnb_static {
+		alias /data/web_static/current;
+		index index.html index.htm;
+	}
+
+	location /redirect_me {
+		return 301 https://www.youtube.com;
+	}
+
+	error_page 404 /404.html;
+	location /404 {
+		root /var/www/html;
+		internal;
+	}
+	
+	location /airbnb-onepage/ {
+		include proxy_params;
+		proxy_pass http://0.0.0.0:5000/airbnb-onepage/;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+	}
+	
+	location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+		include proxy_params;
+		proxy_pass http://0.0.0.0:5001/number_odd_or_even/$1;
+	}
+
+	location /api/ {
+		include proxy_params;
+		proxy_pass http://0.0.0.0:5002/api/;
+	}
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}
