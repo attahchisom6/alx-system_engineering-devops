@@ -1,12 +1,9 @@
-# A puppet manifest to increaase the value of the request nginx handles
-
-exec {'fix--for-nginx':
-	provider => shell,
-	command	=> 'sed -i "s/15/4096/" /etc/default/nginx'
+# increases the upper limit and restart nginx
+exec { 'increase upper limit':
+  provider => shell,
+  command  => 'sed -i s/15/1000000/ /etc/default/nginx'
 }
-
-# restart nginx
-exec {'restarting nginx':
-	provider => shell,
-	command => 'service nginx restart'
+exec { 'restart nginx server':
+  provider => shell,
+  command  => 'service nginx restart'
 }
