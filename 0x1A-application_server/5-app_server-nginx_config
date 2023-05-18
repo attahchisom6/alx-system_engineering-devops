@@ -4,6 +4,8 @@ server {
 	add_header X-Served-By 153318-web-01;
 	root /var/www/html;
 	index index.html index.htm;
+	
+	try_files $uri $uri/ =404;
 
 	location /hbnb_static {
 		alias /data/web_static/current;
