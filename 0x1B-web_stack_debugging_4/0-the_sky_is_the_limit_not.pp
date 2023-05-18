@@ -1,16 +1,12 @@
-# A puppet manifest to increaase the value of the request nginx handles
+# fix request limit at nginx
 
-# increase value of ulimit
-exec {'fix-nginx':
-	provider => 'shell',
-	command	=> 'sed -i "s/15/4096/" /etc/default/nginx',
-
-	path	=> '/bin',
-	before	=> Exec['restarting nginx'],
+exec { 'fix--for-nginx':
+  command => 'sed -i "s/15/4096/" /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/'
 }
 
-# restart nginx
-exec {'restarting nginx':
-	provider	=> 'shell',
-	command => 'sudo service nginx restart',
+# Restart Nginx
+-> exec { 'nginx-restart':
+  command => 'nginx restart',
+  path    => '/etc/init.d/'
 }
