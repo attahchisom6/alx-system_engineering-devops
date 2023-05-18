@@ -1,14 +1,12 @@
 # A puppet manifest to increaase the value of the request nginx handles
 
 exec {'fix--for-nginx':
-	command	=> 'sed -i "s/15/4096/" /etc/default/nginx',
-
-	path	=> '/usr/local/bin/:/bin/',
-	before	=> Excec['restarting nginx'],
+	provider => shell,
+	command	=> 'sed -i "s/15/4096/" /etc/default/nginx'
 }
 
 # restart nginx
-exec {'restarting nginx':,
-	command => 'nginx restart',
-	path	=> '/etc/init.d',
+exec {'restarting nginx':
+	provider => shell,
+	command => 'service nginx restart'
 }
