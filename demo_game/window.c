@@ -1,13 +1,14 @@
 #include "MyHeader/sources.h"
 
 /**
- * create_window - function to create a window for our game application
+ * create_window_renderer - function to create a window for our
+ * game application
  * and a renderer for our game
  *
- * return: 0 on success
+ * Return: true on success
  */
 
-bool create_window_renderer()
+bool create_window_renderer(void)
 {
 	SDL_window *window;
 	SDL_renderer *renderer;
@@ -22,21 +23,24 @@ bool create_window_renderer()
 			SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WONDOW_SHOWN);
 	if (window == NULL)
 	{
-		fprintf(stderr, "failed to initialize window! SDL Error: %s\n", SDL_GetError());
+		fprintf(stderr, "failed to initialize window! SDL Error: %s\n",
+				SDL_GetError());
 		return (false);
 	}
 	else
 	{
 		screenSurface = SDL_GetWindowSurface(window);
-		fill_Rect = SDL_Fill_Rect (screenSurface, NULL, SDL_Map(screensurface->format, 0xff,0xff, 0xff));
+		fill_Rect = SDL_Fill_Rect(screenSurface, NULL,
+				SDL_Map(screensurface->format, 0xff, 0xff, 0xff));
 		SDL_Update_WindowSurface(window);
 
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 		if (render == NULL)
 		{
-			fprintf(stderr, "Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+			fprintf(stderr, "Renderer could not be created! SDL Error: %s\n",
+					SDL_GetError());
 			return (false);
 		}
 	}
-	return false;
+	return (true);
 }
