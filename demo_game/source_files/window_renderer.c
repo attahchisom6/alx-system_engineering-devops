@@ -1,4 +1,4 @@
-#include "MyHeaders/sources.h"
+#include "../Headers/sources.h"
 
 /**
  * create_window_renderer - function to create a window for our
@@ -11,9 +11,9 @@
 bool create_window_renderer(void)
 {
 	SDL_Window *window = NULL;
-	SDL_Renderer renderer = NULL;
+	SDL_Renderer *renderer = NULL;
 
-	if (Init_SDL(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		fprintf(stderr, "Could not initialize SDL2; SDL Error: %s\n",
 				SDL_GetError());
@@ -38,5 +38,8 @@ bool create_window_renderer(void)
 				SDL_GetError());
 		return (false);
 	}
+
+	game_loop();
+
 	return (true);
 }

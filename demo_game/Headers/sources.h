@@ -1,5 +1,5 @@
-#define RAYCASTED_GAME_H
 #ifndef RAYCASTED_GAME_H
+#define RAYCASTED_GAME_H
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
@@ -10,5 +10,7 @@
 #define PI 3.1415926535897
 
 bool create_window_renderer(void);
+void close(SDL_Window *window, SDL_Renderer *renderer);
+void game_loop(void);
 
 #endif
