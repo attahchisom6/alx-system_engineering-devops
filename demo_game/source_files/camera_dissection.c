@@ -36,6 +36,17 @@ int renderMap(void)
 	int map[ROWS][COLUMNS] = {
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 1, 1, 1, 1, 1, 1, 0, 1},
+		{1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+		{1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+		{1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
+		{1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+	};
+
+	return (map);
+}
 
  
 /**
@@ -46,6 +57,8 @@ int renderMap(void)
 void raycasted(void)
 {
 	int x;
+	int wallHeight;
+	int map = renderMap();
 	float cameraX = 5.0;
 	float cameraY = 5.0;
 	float cameraAngle = 0.0;
