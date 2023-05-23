@@ -12,5 +12,6 @@
 bool create_window_renderer(void);
 void close(SDL_Window *window, SDL_Renderer *renderer);
 void game_loop(void);
+bool Init_camera(SDL_Event event);
 
 #endif

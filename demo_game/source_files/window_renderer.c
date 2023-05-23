@@ -40,6 +40,5 @@ bool create_window_renderer(void)
 	}
 
 	game_loop();
-
 	return (true);
 }
