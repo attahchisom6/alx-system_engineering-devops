@@ -1,7 +1,9 @@
 #include "../Headers/sources.h"
 
+void free_map(int **map);
+
 /**
- * camera - function that handles camera rotation
+ * Init_camera - function that handles camera rotation
  *
  * Return: true on success
  */
@@ -28,7 +30,7 @@ bool Init_camera(SDL_Event event, SDL_Renderer *render)
 /**
  * renderMap - defines a map or the world the player moves in
  *
- * Return an array of nunbers
+ * Return: an array of nunbers
  */
 
 int **renderMap(void)
@@ -60,19 +62,20 @@ int **renderMap(void)
 			map[p][k] = InitialMap[p][k];
 		}
 	}
+	return (map);
 }
 
  
 /**
- * raycasting - setting sail to make our drawing raycasted
+ * raycasted - setting sail to make our drawing raycasted
  *
  * Return: we will see
  */
-void raycasted(void)
+void raycasted(SDL_Renderer *renderer)
 {
 	int x;
 	int wallHeight;
-	int map = renderMap();
+	int **map = renderMap();
 	float cameraX = 5.0;
 	float cameraY = 5.0;
 	float cameraAngle = 0.0;
@@ -137,20 +140,29 @@ void raycasted(void)
 		}
 
 		/*measure  wall height based on the distance to wall*/
-		wallHeight = (int)(SCREEN_HIEGHT / distanceToWall);
+		wallHeight = (int)(SCREEN_HEIGHT / distanceToWall);
 
 		/*set wall color and line segment*/
 		SDL_SetRenderDrawColor(renderer, hitBoundary ? 255 : 128, 128, 128, 255);
-		SDL_RenderDrawLine(renderer, x, (SCREEN_HEIGHT - wallHieght) / 2, x, (SCREEN_HEIGHT + wallHeight) / 2);
+		SDL_RenderDrawLine(renderer, x, (SCREEN_HEIGHT - wallHeight) / 2, x, (SCREEN_HEIGHT + wallHeight) / 2);
 	}
 	/*update the renderer*/
-	SDL_RenderPresent(render);
+	SDL_RenderPresent(renderer);
+	free_map(map);
 }
 
 /**
- * free_map
+ * free_map - frees memory allocated to the map vector
+ * @map: A double pointer to the map matrix
+ *
+ * Return: void
  */
 
-free_map()
+void free_map(int **map)
 {
-	for (
+	int k;
+
+	for (k = 0; k < ROWS; k++)
+		free(map[k]);
+	free(map);
+}

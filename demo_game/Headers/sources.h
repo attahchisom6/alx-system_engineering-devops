@@ -14,4 +14,7 @@ bool create_window_renderer(void);
 void close(SDL_Window *window, SDL_Renderer *renderer);
 void game_loop(void);
 bool Init_camera(SDL_Event eventi, SDL_Renderer *renderer);
+int **renderMap(void);
+void raycasted(void);
+void free_map(int **map);
 #endif
