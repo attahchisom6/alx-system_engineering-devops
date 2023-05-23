@@ -21,7 +21,7 @@ bool Init_camera(SDL_Event event, SDL_Renderer *render)
 	}
 
 	SDL_SetRenderDrawColor(render, 0, 0, 0, 255);
-	SDL_ClearRenderer(render);
+	SDL_RenderClear(render);
 	return (true);
 }
 
@@ -31,9 +31,17 @@ bool Init_camera(SDL_Event event, SDL_Renderer *render)
  * Return an array of nunbers
  */
 
-int renderMap(void)
+int **renderMap(void)
 {
-	int map[ROWS][COLUMNS] = {
+	int **map = malloc(ROWS * sizeof(int *));
+	int k, p;
+
+	for (k = 0; k < ROWS; k++)
+	{
+		map[k] = malloc(COLUMNS * sizeof(int));
+	}
+
+	int InitialMap[ROWS][COLUMNS] = {
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 		{1, 0, 1, 1, 1, 1, 1, 1, 0, 1},
@@ -45,7 +53,13 @@ int renderMap(void)
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 	};
 
-	return (map);
+	for (p = 0; p < ROWS; p++)
+	{
+		for (k = 0; k < COLUMNS; k++)
+		{
+			map[p][k] = InitialMap[p][k];
+		}
+	}
 }
 
  
@@ -132,3 +146,11 @@ void raycasted(void)
 	/*update the renderer*/
 	SDL_RenderPresent(render);
 }
+
+/**
+ * free_map
+ */
+
+free_map()
+{
+	for (
