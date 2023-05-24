@@ -1,4 +1,5 @@
 #include "camera.h"
+#include "game.h"
 
 bool Init_camera(SDL_Event event)
 {
