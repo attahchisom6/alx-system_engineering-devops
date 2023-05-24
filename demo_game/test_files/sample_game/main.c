@@ -2,7 +2,8 @@
 
 int main(void)
 {
-    if (!create_window_renderer())
+	SDL_Renderer *renderer;
+    if (!create_window_renderer(renderer))
     {
         fprintf(stderr, "Failed to execute the game.");
         return 1;
