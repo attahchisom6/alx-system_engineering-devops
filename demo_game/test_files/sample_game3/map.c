@@ -1,4 +1,4 @@
-#include "map.h"
+#include "game.h"
 
 /**
  * This function servers to render the way our game world is. it defines the structure
@@ -47,7 +47,7 @@ int **renderMap(void)
  * Return: void
  */
 
-void free_map(int **map)
+void freeMap(int **map)
 {
     int k;
 

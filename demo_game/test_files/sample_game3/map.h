@@ -4,7 +4,7 @@
 #define ROWS 9
 #define COLUMNS 10
 
-int** renderMap(void);
+int **renderMap(void);
 void freeMap(int **map);
 
 #endif /* MAP_H */

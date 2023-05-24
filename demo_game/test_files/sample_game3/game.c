@@ -106,12 +106,9 @@ void raycasted(SDL_Renderer *renderer, Player *player)
 
 void close(SDL_Window *window, SDL_Renderer *renderer, Player *player)
 {
-	if (window)
-		SDL_DestroyWindow(window);
-	if (renderer)
-		SDL_DestroyRenderer(renderer);
-	if (player)
-		destroyPlayer(player);
+	/*SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(renderer);
+	destroyPlayer(player);*/
 }
 
 /**
@@ -171,7 +168,9 @@ bool createWindowRenderer(void)
 		}
 	}
     }
-    close(window, renderer, player);
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
+    destroyPlayer(player);
     SDL_Quit();
     return (true);
 }
