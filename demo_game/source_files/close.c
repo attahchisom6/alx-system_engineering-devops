@@ -39,7 +39,7 @@ void game_loop(void)
 				quit = true;
 
 			else if (event.type == SDL_KEYDOWN)
-				Init_camera(event);
+				Init_camera(event, NULL);
 		}
 	}
 }
