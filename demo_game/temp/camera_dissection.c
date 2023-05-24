@@ -4,12 +4,11 @@ void free_map(int **map);
 
 /**
  * Init_camera - function that handles camera rotation
- * @event: handles things like keyboard presses from the player
- * @renderer: SDL Object to render stuff to the screen
  *
  * Return: true on success
  */
-bool Init_camera(SDL_Event event, SDL_Renderer *renderer)
+
+bool Init_camera(SDL_Event event, SDL_Renderer *render)
 {
 	float cameraAngle = 0.0;
 
@@ -23,17 +22,18 @@ bool Init_camera(SDL_Event event, SDL_Renderer *renderer)
 			break;
 	}
 
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(render, 0, 0, 0, 255);
+	SDL_RenderClear(render);
 	return (true);
 }
 
 /**
- * create_map - creates a map with predefined values
+ * renderMap - defines a map or the world the player moves in
  *
- * Return: allocated map
+ * Return: an array of nunbers
  */
-int **create_map(void)
+
+int **renderMap(void)
 {
 	int **map = malloc(ROWS * sizeof(int *));
 	int k, p;
@@ -43,7 +43,7 @@ int **create_map(void)
 		map[k] = malloc(COLUMNS * sizeof(int));
 	}
 
-	int initialMap[ROWS][COLUMNS] = {
+	int InitialMap[ROWS][COLUMNS] = {
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 		{1, 0, 1, 1, 1, 1, 1, 1, 0, 1},
@@ -59,67 +59,54 @@ int **create_map(void)
 	{
 		for (k = 0; k < COLUMNS; k++)
 		{
-			map[p][k] = initialMap[p][k];
+			map[p][k] = InitialMap[p][k];
 		}
 	}
-
 	return (map);
 }
 
+ 
 /**
- * free_map - frees memory allocated to the map
- * @map: double pointer to the map matrix
+ * raycasted - setting sail to make our drawing raycasted
  *
- * Return: void
- */
-void free_map(int **map)
-{
-	int k;
-
-	for (k = 0; k < ROWS; k++)
-		free(map[k]);
-	free(map);
-}
-
-/**
- * raycasted - performs raycasting and draws walls
- * @renderer: the SDL renderer
- *
- * Return: void
+ * Return: we will see
  */
 void raycasted(SDL_Renderer *renderer)
 {
 	int x;
 	int wallHeight;
-	int **map = create_map();
+	int **map = renderMap();
 	float cameraX = 5.0;
 	float cameraY = 5.0;
 	float cameraAngle = 0.0;
 
-	/* Raycasting and drawing walls */
+	/*raycasting and drawing wall*/
 	for (x = 0; x < SCREEN_WIDTH; x++)
 	{
 		float rayAngle = (cameraAngle - 0.5 * PI) + ((float)x / SCREEN_WIDTH) * PI;
 		float rayDirX = cos(rayAngle);
 		float rayDirY = sin(rayAngle);
 
-		/* Performing the draw */
+		/*performing the draw*/
 		float distanceToWall = 0.0;
 		bool hitWall = false;
 		bool hitBoundary = false;
 
-		/* Increment size for ray casting */
+		/*increment size for ray casting*/
 		float stepSize = 0.1;
 		float currentX = cameraX;
 		float currentY = cameraY;
 
 		while (!hitWall && distanceToWall < 10.0)
 		{
-			int testX = (int)(currentX + distanceToWall * rayDirX);
-			int testY = (int)(currentY + distanceToWall * rayDirY);
+			int testX;
+			int testY;
 
-			if (testX < 0 || testX >= SCREEN_WIDTH || testY < 0 ||
-					testY >= SCREEN_HEIGHT)
+			distanceToWall += stepSize;
+			testX = (int)(currentX + distanceToWall * rayDirX);
+			testY = (int)(currentY + distanceToWall * rayDirY);
+
+			if (testX < 0 || testX >= SCREEN_WIDTH || testY < 0 || testY >= SCREEN_HEIGHT)
 			{
 				hitWall = true;
 				distanceToWall = 10.0;
@@ -127,41 +114,55 @@ void raycasted(SDL_Renderer *renderer)
 			else if (map[testX][testY] == 1)
 			{
 				hitWall = true;
+
 				bool boundary = false;
 
 				while (!boundary && distanceToWall < 10.0)
 				{
-					int boundX = (int)(currentX + distanceToWall * rayDirX);
-					int boundY = (int)(currentY + distanceToWall * rayDirY);
+					int BoundX;
+					int BoundY;
 
-					if (boundX < 0 || boundX >= SCREEN_WIDTH || boundY < 0 ||
-							boundY >= SCREEN_HEIGHT)
+					distanceToWall += stepSize;
+					BoundX = (int)(currentX + distanceToWall * rayDirX);
+					BoundY = (int)(currentY + distanceToWall * rayDirY);
+
+					if (BoundX < 0 || BoundX >= SCREEN_WIDTH || BoundY < 0 || BoundY >= SCREEN_HEIGHT)
 					{
 						boundary = true;
 					}
-					else if (map[boundX][boundY] != 1)
+					else if (map[BoundX][BoundY] != 1)
 					{
 						boundary = true;
 						hitBoundary = true;
 					}
-
-					distanceToWall += stepSize;
 				}
 			}
-
-			distanceToWall += stepSize;
 		}
 
-		/* Measure wall height based on the distance to wall */
+		/*measure  wall height based on the distance to wall*/
 		wallHeight = (int)(SCREEN_HEIGHT / distanceToWall);
 
-		/* Set wall color and draw line segment */
+		/*set wall color and line segment*/
 		SDL_SetRenderDrawColor(renderer, hitBoundary ? 255 : 128, 128, 128, 255);
-		SDL_RenderDrawLine(renderer, x, (SCREEN_HEIGHT - wallHeight) / 2, x,
-				(SCREEN_HEIGHT + wallHeight) / 2);
+		SDL_RenderDrawLine(renderer, x, (SCREEN_HEIGHT - wallHeight) / 2, x, (SCREEN_HEIGHT + wallHeight) / 2);
 	}
-
-	/* Update the renderer */
+	/*update the renderer*/
 	SDL_RenderPresent(renderer);
 	free_map(map);
+}
+
+/**
+ * free_map - frees memory allocated to the map vector
+ * @map: A double pointer to the map matrix
+ *
+ * Return: void
+ */
+
+void free_map(int **map)
+{
+	int k;
+
+	for (k = 0; k < ROWS; k++)
+		free(map[k]);
+	free(map);
 }
