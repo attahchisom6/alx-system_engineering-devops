@@ -27,6 +27,8 @@ typedef struct Player_s {
     float turnSpeed;
 } Player_t;
 
+extern Player_t player;
+
 Player *createPlayer(float x, float y, float direction); // Create a new player
 void destroyPlayer(Player_t *player);
 

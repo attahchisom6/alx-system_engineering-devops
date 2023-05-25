@@ -20,3 +20,5 @@ struct ray_s
 	bool isVerticalHit;
 	int wallHitContent;
 } ray_t;
+
+extern ray_t rays[NUM_RAYS];

@@ -3,7 +3,7 @@
 
 #define ROWS 9
 #define COLUMNS 10
-#define titleSize 0.25
+#define titleSize 64
 
 int **renderMap(void);
 void freeMap(int **map);
