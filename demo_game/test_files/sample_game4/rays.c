@@ -2,7 +2,7 @@
 
 ray_t rays[NUM_RAYS];
 
-static bool foundHorzWallHit, foundVertWallHit;
+static bool foundHorzWallHit = false, foundVertWallHit = false;
 static float horzWallHitX, horzWallHitY, HorzWallContent, vertWallHitX, vertWallHitY;
 /**
  * HorzIntersection - find horizontal intersection on a wall
@@ -30,3 +30,23 @@ void HorzIntersection(float rayAngle)
 
 	nextHorzHitX = Xintercept;
 	nextHorzHitY = Yintercept;
+
+	while (isInsideMap(nextHorzHitX, nextHorzHitY))
+	{
+		float Ytest = nextHorzHitY, Xtest = nextHorzHitY;
+
+		if (detectCollision(Xtest, Ytest))
+		{
+			horzWallHitX = nextHorzHitX;
+			horzWallHitY = 	nextHorzHitY + isRayFacingUp(rayAngle);
+			horzWallContent = getMapContent((int)floor(Xtest / titleSize),
+					(int)floor(Ytest / titleSize));
+
+			foundHorzWallHit = true;
+			break;
+		}
+
+		nextHorzWallHitX = Xstep;
+		nextHorzWallHitY = Ystep;
+	}
+}
