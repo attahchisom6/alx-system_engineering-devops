@@ -1,7 +1,7 @@
 #ifndef VISUALS_H
 #define VISUALS_H
 
-#define NUM TEXTURES 8
+#define NUM_TEXTURES 8
 
 /**
  * struct texture_s - renders the texture of a surface to a window
@@ -20,7 +20,12 @@ typedef struct texture_s
 	int width;
 	int height;
 	color_t *textureBuffer;
-	upng_t *upngTexture;
+	/*upng_t *upngTexture;*/
 } texture_t;
 
-textture_t wallTexture[NUM_TEXTURES];
+texture_t wallTexture[NUM_TEXTURES];
+
+/* visual functions */
+bool createWindowRenderer(void);
+
+#endif

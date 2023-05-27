@@ -22,14 +22,10 @@ typedef struct Player_s {
     int turnDirection;
     float walkDirection;
     float rotationAngle;
-    float rotationAngle; 
     float walkSpeed;
     float turnSpeed;
 } Player_t;
 
 extern Player_t player;
-
-Player *createPlayer(float x, float y, float direction); // Create a new player
-void destroyPlayer(Player_t *player);
 
 #endif /* PLAYER_H */
