@@ -104,3 +104,15 @@ void renderColorBuffer(void)
 }
 
 /**
+ * DrawPixel - assign color to each pixel
+ * @color: color to assign to each pixel
+ * @x: x coordinate of the pixel
+ * @y: y cordinate of the pixel
+ *
+ * Return: void
+ */
+
+void DrawPixel(color_t color, float x, float y)
+{
+	colorBuffer[(SCREEN_WIDTH * y) + x] = color;
+}
