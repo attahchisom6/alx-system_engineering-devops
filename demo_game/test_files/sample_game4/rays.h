@@ -22,3 +22,10 @@ struct ray_s
 } ray_t;
 
 extern ray_t rays[NUM_RAYS];
+
+/*ray function*/
+void HorzIntersection(float rayAngle);
+void VertIntersection(float rayAngle);
+void cast_ray(float rayAngle, int rayId);
+void cast_all_rays(void);
+void renderRays(void)

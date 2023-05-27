@@ -2,7 +2,7 @@
 
 ray_t rays[NUM_RAYS];
 
-static bool foundHorzWallHit = false, foundVertWallHit = false;
+static bool foundHorzWallHit, foundVertWallHit;
 static float horzWallHitX, horzWallHitY, HorzWallContent;
 static float vertWallHitX, vertWallHitY, vertWallContent;
 /**
@@ -34,15 +34,16 @@ void HorzIntersection(float rayAngle)
 
 	while (isInsideMap(nextHorzHitX, nextHorzHitY))
 	{
-		float Ytest = nextHorzHitY, Xtest = nextHorzHitY;
+		float testXintercept = nextHorzHitY;
+		float testYintercept = nextHorzHitY;
 +
 
-		if (detectCollision(Xtest, Ytest))
+		if (detectCollision(testXintercept, testYintercept))
 		{
 			horzWallHitX = nextHorzHitX;
 			horzWallHitY = 	nextHorzHitY + isRayFacingUp(rayAngle);
-			horzWallContent = getMapContent((int)floor(Xtest / titleSize),
-					(int)floor(Ytest / titleSize));
+			horzWallContent = getMapContent((int)floor(testXintercept / titleSize),
+					(int)floor(testYintercept / titleSize));
 
 			foundHorzWallHit = true;
 			break;
@@ -63,12 +64,120 @@ void VertIntercept(float rayAngle)
 {
 	float Xstep, Ystep, Xintercept, Yintercept, nextVertHitX, nextVertHitY;
 
+	foundVertWallHit = false;
 	vertHitWallX = vertHitWallY = vertWallContent = 0;
 
 	Xintercept = floor(player.x * titleSize) / titleSize
-	Xintercept += isRayFacingRight(rayAngle) ? titleSizei : 0;
+	Xintercept += isRayFacingRight(rayAngle) ? titleSize : 0;
 	Yintercept = player.y + (Xintercept - player.x) * tan(rayAngle);
 
 	Xstep = titleSIze;
 	Xstep *= isRayFacingLeft(rayAngle) ? -1 : 1;
-	Ystep = 
+	Ystep = titleSize * tan(rayAngle);
+	Ystep *= isRayFacingUp(rayAngle) && Ystep > 0 ? -1 : 1;
+	Ystep *= isRayFacingDown(rayAngle) && Ystep < 0 ? -1 : 1;
+
+	nextVertHitX = Xintercept;
+	nextVertHitY = Yintercept;
+
+	while (isInsideMap(nextVertHitX, nextVertHitY))
+	{
+		float testXintercept = nextVerHitX + isRayFacingLeft(rayAngle) ? -1 : 0 
+		float testYintercept = nextVerHitY;
+
+		if detectCollision(testXintercept, testYintercept)
+		{
+			vertWallHitX = nextVertHitX;
+			vertWallHitY = nextVertHitY;
+			vertWallContent = getMapContent((int)floor(testXintercept / titleSize),
+					(int)floor(testYintercept / titleSize));
+
+			foundVertWallHit = true;
+			break;
+		}
+		nextVertWallHitX += Xstep;
+		nextVertWallHitY += Ystep;
+	}
+}
+
+/**
+ * cast_ray - casts a single ray to the projection plane
+ * @rayAngle: angle of the ray
+ * @rayId: ray identifier
+ *
+ * Return: void
+ */
+
+void cast_ray(float rayAngle, int rayId)
+{
+	float horzDistanceHit = vertDistanceHit = 0;
+
+	rayAngle = remainder(rayAngle, TWO_PI);
+	if (rayAngle < 0)
+		rayAngle = rayAngle + TWO_PI;
+	HorzIntersection(rayAngle);
+	VertIntersection(rayAngle);
+
+	horzDistanceHit = foundHorzWallHit ? EuclideanDistance(player.x, horzWallHitX,
+			player.y, horzWallHitY) : FLT_MAX;
+	vertDistanceHit = foundVertWallHit ? EuclideanDistance(player.x, vertWallHitX, player.y, vertWallHitY) : FLT_MAX;
+
+	if (horzDistanceHit < vertDistanceHit)
+	{
+		rays[rayId].wallHitX = horzWallHitX;
+		rays[rayId].wallHitY = horzWallHitY;
+		rays[rayId].rayAngle = rayAngle;
+		rays[rayId].distanceToWall = horzDistanceHit;
+		rays[rayId].isVerticalHit = false;
+		rays[rayId].wallHitcontent = horzWallContent;
+	}
+	else
+	{
+		rays[rayId].wallHitX = vertWallHitX;
+		rays[rayId].wallHitY = vertWallHitY;
+		rays[rayId].rayAngle = rayAngle;
+		rays[rayId].distanceToWall = vertDistanceHit;
+		rays[rayId].isVertical = true;
+		rays[rayId].hitContent = vertHitWallContent;
+	}
+}
+
+/**
+ * cast_all_rays - cat all rays to the window
+ * rayAngle: angle of the ray casted to the wall
+ *
+ * Return: void
+ */
+
+void cast_all_rays(void)
+{
+	int col;
+
+	for (col = 0; col < NUM_RAYS; col++)
+	{
+		float rayAngle = player.rotationAngle + atan((col - NUM_RAYS / 2) / PROJ_PLANE);
+		cast_ray(rayAngle, col);
+	}
+}
+
+/**
+ * renderRays - draws all rays accordingly into the prohection plane
+ *
+ * Return: void
+ */
+
+void renderRays(void)
+{
+	int k;
+
+	for (k = 0; k < NUM_RAYS; k += 48)
+	{
+		drawLine(
+			player.x * SCALE_FACTOR,
+			player.y * SCALE_FACTOR,
+			rays[k].walkHitX * SCALE_FACTOR,
+			rays[k].walkHitY * SCALE_FACTOR,
+			0xFF0000FF
+			);
+	}
+}

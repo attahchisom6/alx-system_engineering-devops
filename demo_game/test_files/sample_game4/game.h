@@ -8,7 +8,8 @@
 #include "math.h"
 #include <stdlib.h>
 
-#define PI 3.14169265
+#define PI 3.1416926535897
+#define TWO_PI 6.2831853071795
 #define SCREEN_WIDTH (COLUMNS * titleSize);
 #define SCREEN_HEIGHT (ROWS * titleSize);
 #define SCALE_FACTOR 0.25
