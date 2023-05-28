@@ -17,5 +17,6 @@
 #define SCALE_FACTOR 0.25
 #define NUM_RAYS SCREEN_WIDTH
 #define FOV_ANGLE PI / 3
+#define PROJ_PLANE ((SCREEN_WIDTH / 2) / tan(FOV_ANGLE / 2));
 
 #endif /* GAME_H */
