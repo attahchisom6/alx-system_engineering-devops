@@ -28,4 +28,4 @@ void HorzIntersection(float rayAngle);
 void VertIntersection(float rayAngle);
 void cast_ray(float rayAngle, int rayId);
 void cast_all_rays(void);
-void renderRays(void)
+void renderRays(void);
