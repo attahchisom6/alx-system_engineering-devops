@@ -4,6 +4,7 @@ static SDL_Window *window;
 static SDL_Renderer *renderer;
 static color_t *colorBuffer;
 static SDL_Texture *colorBufferTexture;
+
 /**
  * createWindowRenderer - creates a window and a render our game
  * to the wundow

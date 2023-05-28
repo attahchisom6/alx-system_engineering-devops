@@ -21,9 +21,9 @@ typedef struct texture_s
 	int height;
 	color_t *textureBuffer;
 	/*upng_t *upngTexture;*/
-} texture_t;
+} texxture_t;
 
-extern texture_t wallTexture[NUM_TEXTURES];
+texxture_t wallTexture[NUM_TEXTURES];
 
 /* visual functions */
 bool createWindowRenderer(void);
