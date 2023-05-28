@@ -27,5 +27,9 @@ texture_t wallTexture[NUM_TEXTURES];
 
 /* visual functions */
 bool createWindowRenderer(void);
+void close(void);
+void clearBuffer(color_t color);
+void renderColorBuffer(void);
+void drawPixel(color_t color, int x, int y);
 
 #endif

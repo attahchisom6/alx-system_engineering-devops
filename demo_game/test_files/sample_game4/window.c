@@ -97,7 +97,7 @@ void renderColorBuffer(void)
 			colorBufferTexture,
 			NULL,
 			colorBuffer,
-			(int)(SCREEN_WIDTH * SREEN_HEIGHT * sizeof(color_t)),
+			(int)(SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(color_t))
 		);
 	SDL_RenderCopy(renderer, colorBufferTexture, NULL, NULL);
 	SDL_RenderPresent(renderer);
@@ -112,7 +112,7 @@ void renderColorBuffer(void)
  * Return: void
  */
 
-void DrawPixel(color_t color, float x, float y)
+void DrawPixel(color_t color, int x, int y)
 {
 	colorBuffer[(SCREEN_WIDTH * y) + x] = color;
 }
