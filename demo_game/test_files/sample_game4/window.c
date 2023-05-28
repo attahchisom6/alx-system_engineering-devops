@@ -18,7 +18,7 @@ bool createWindowRenderer(void)
 
 	int fullScreenWidth, fullScreenHeight;
 
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
 		fprintf(stderr, "failed to initialize SDL; SDL Error: %s\n",
 				SDL_GetError());
@@ -32,7 +32,7 @@ bool createWindowRenderer(void)
 	window = SDL_CreateWindow(
 			"my first game wriiten 9 month into my Alx course", SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED, fullScreenWidth, fullScreenHeight,
-			SDL_WINDOW_BORDERLESS
+			SDL_WINDOW_SHOWN
 		);
 	if (!window)
 	{
@@ -61,13 +61,13 @@ bool createWindowRenderer(void)
  * Return: void
  */
 
-void close(void)
+/*void close(void)
 {
 	free(colorBuffer);
 	SDL_DestroyTexture(colorBufferTexture);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
-}
+}*/
 
 /**
  * clearColorBuffer - clear buffer for every framw
