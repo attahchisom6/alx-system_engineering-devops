@@ -32,4 +32,9 @@ void clearColorBuffer(color_t color);
 void renderColorBuffer(void);
 void drawPixel(color_t color, int x, int y);
 
+/*wall, floor and ceiling functions*/
+void changeColorItensity(color_t *color, float factor);
+void renderFloor(int BottomTopPixel, color_t *texelColor, int p);
+void renderCeiling(int wallTopPixel, color_t *texelColor, int p);
+void renderWall(void);
 #endif
