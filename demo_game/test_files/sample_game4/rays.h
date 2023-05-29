@@ -1,6 +1,8 @@
 #ifndef RAYS_H
 #define RAYS_H
 
+#define NUM_RAYS 74
+
 /**
  * struct ray_s - struct store data of ray directions
  * @wallHitX: wall hit x coordinate
@@ -11,7 +13,7 @@
  * @wallHitContent: wall hit content
  */
 
-struct ray_s
+typedef struct ray_s
 {
 	float wallHitX;
 	float wallHitY;
@@ -29,3 +31,5 @@ void VertIntersection(float rayAngle);
 void cast_ray(float rayAngle, int rayId);
 void cast_all_rays(void);
 void renderRays(void);
+
+#endif /* RAYS_H */

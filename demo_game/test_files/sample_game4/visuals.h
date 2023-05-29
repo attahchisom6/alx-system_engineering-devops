@@ -23,7 +23,7 @@ typedef struct texture_s
 	/*upng_t *upngTexture;*/
 } texture_t;
 
-extern texture_t wallTexture[NUM_TEXTURES];
+extern texture_t wallTextures[NUM_TEXTURES];
 
 /* visual functions */
 bool createWindowRenderer(void);
