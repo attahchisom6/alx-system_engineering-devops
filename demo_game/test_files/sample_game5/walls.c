@@ -1,5 +1,9 @@
 #include "game.h"
 
+ray_t rays[NUM_RAYS];
+Player_t player;
+texture_t wallTextures[NUM_TEXTURES];
+
 /**
  * changeColorIntensity - function to unmask a color bit
  * and itensify it based on the intesity factor, it does

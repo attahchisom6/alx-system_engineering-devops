@@ -3,18 +3,18 @@
 
 #include <stdbool.h>
 #include <SDL2/SDL.h>
-#include "player.h"
-#include "rays.h"
-#include "map.h"
-#include "visuals.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdint.h>
 
 #define PI 3.1416926535897
 #define TWO_PI 6.2831853071795
+#define titleSize 64
+#define ROWS 9
+#define COLUMNS 10
 #define SCREEN_WIDTH (COLUMNS * titleSize)
 #define SCREEN_HEIGHT (ROWS * titleSize)
+#define NUM_TEXTURES 8 
 #define SCALE_FACTOR 0.25
 #define FOV_ANGLE PI / 3
 #define PROJ_PLANE ((SCREEN_WIDTH / 2) / tan(FOV_ANGLE / 2))
@@ -77,14 +77,8 @@ void cast_ray(float rayAngle, int rayId);
 void cast_all_rays(void);
 void renderRays(void);
 
-#define ROWS 9
-#define COLUMNS 10
-#define titleSize 64
-
 int **renderMap(void);
 void freeMap(int **map);
-
-#define NUM_TEXTURES 8
 
 /**
  * struct texture_s - renders the texture of a surface to a window
