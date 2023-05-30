@@ -1,7 +1,7 @@
 #ifndef VISUALS_H
 #define VISUALS_H
 
-#define NUM_TEXTURES 8
+#include "constants.h"
 
 /**
  * struct texture_s - renders the texture of a surface to a window

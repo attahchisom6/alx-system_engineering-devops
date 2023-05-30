@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "constants.h"
 /**
  * Player - a structure containing information about the player
  * @x: X coordinate of the player
