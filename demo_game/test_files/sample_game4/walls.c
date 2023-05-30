@@ -60,7 +60,7 @@ void renderFloor(int wallBottomPixel, color_t *texelColor, int p)
 
 		*texelColor = wallTextures[4].
 			textureBuffer[textureOffSetX + textureOffSetY * texture_width];
-		drawPixel(*texelColor, p, y);
+		drawPixel(p, y, *texelColor);
 	}
 }
 
@@ -96,7 +96,7 @@ void renderCeiling(int wallTopPixel, color_t *texelColor, int p)
 
 		*texelColor = wallTextures[6].textureBuffer[textureOffSetX +
 				textureOffSetY * texture_width];
-		drawPixel(*texelColor, p, y);
+		drawPixel(p, y, *texelColor);
 	}
 }
 

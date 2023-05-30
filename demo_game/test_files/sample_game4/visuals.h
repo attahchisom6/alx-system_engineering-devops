@@ -13,7 +13,7 @@
  * description: handles dcreen texture
  */
 
-typedef uint64_t color_t;
+typedef uint32_t color_t;
 
 typedef struct texture_s
 {
@@ -30,7 +30,7 @@ bool createWindowRenderer(void);
 void close(void);
 void clearColorBuffer(color_t color);
 void renderColorBuffer(void);
-void drawPixel(color_t color, int x, int y);
+void drawPixel(int x, int y, color_t color);
 
 /*wall, floor and ceiling functions*/
 void changeColorItensity(color_t *color, float factor);

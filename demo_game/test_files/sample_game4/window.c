@@ -113,7 +113,7 @@ void renderColorBuffer(void)
  * Return: void
  */
 
-void drawPixel(color_t color, int x, int y)
+void drawPixel(int x, int y, color_t color)
 {
 	colorBuffer[(SCREEN_WIDTH * y) + x] = color;
 }
