@@ -60,7 +60,7 @@ void renderFloor(int wallBottomPixel, color_t *texelColor, int p)
 
 		*texelColor = wallTextures[4].
 			textureBuffer[textureOffSetX + textureOffSetY * texture_width];
-		drawPixel(p, y, *texelColor);
+		drawPixel(*texelColor, p, y);
 	}
 }
 
@@ -96,7 +96,7 @@ void renderCeiling(int wallTopPixel, color_t *texelColor, int p)
 
 		*texelColor = wallTextures[6].textureBuffer[textureOffSetX +
 				textureOffSetY * texture_width];
-		drawPixel(p, y, *texelColor);
+		drawPixel(*texelColor, p, y);
 	}
 }
 
@@ -125,15 +125,13 @@ void renderWall(void)
 		wallTopPixel = (stripWallHeight / 2) + (SCREEN_HEIGHT / 2);
 		wallTopPixel = wallTopPixel > SCREEN_HEIGHT ? SCREEN_HEIGHT : wallTopPixel;
 		textNum =  rays[x].wallHitContent - 1;
-		texture_width = wallTextures[3].width;
-		texture_height = wallTextures[3].height;
-		renderFloor(wallBottomPixel, &texelColor, x);
-		renderCeiling(wallTopPixel, &texelColor, x);
+		texture_width = wallTextures[textNum].width;
+		texture_height = wallTextures[textNum].height;
 
 		if (rays[x].isVerticalHit)
-			textureOffSetX = (int)rays[x].wallHitX % titleSize;
+			textureOffSetX = (int)rays[x].wallHitY % titleSize;
 		else
-			textureOffSetY = (int)rays[x].wallHitX % titleSize;
+			textureOffSetX = (int)rays[x].wallHitX % titleSize;
 
 		for (y = wallTopPixel; y < wallBottomPixel; y++)
 		{
@@ -144,7 +142,9 @@ void renderWall(void)
 
 			if (rays[x].isVerticalHit)
 				changeColorIntensity(&texelColor, 0.5);
-			drawPixel(x, y, texelColor);
+			drawPixel(texelColor, x, y);
 		}
+		renderFloor(wallBottomPixel, &texelColor, x);
+		renderCeiling(wallTopPixel, &texelColor, x);
 	}
 }
