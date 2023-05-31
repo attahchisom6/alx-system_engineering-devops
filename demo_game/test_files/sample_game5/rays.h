@@ -1,7 +1,7 @@
 #ifndef RAYS_H
 #define RAYS_H
 
-#define NUM_RAYS 74
+#define NUM_RAYS SCREEN_WIDTH
 
 /**
  * struct ray_s - struct store data of ray directions

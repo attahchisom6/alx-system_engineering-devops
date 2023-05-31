@@ -144,7 +144,7 @@ void renderWall(void)
 
 			if (rays[x].isVerticalHit)
 				changeColorIntensity(&texelColor, 0.5);
-			drawPixel(x, y, texelColor);
+			drawPixel(texelColor, x, y);
 		}
 	}
 }
