@@ -115,6 +115,6 @@ void renderColorBuffer(void)
 
 void drawPixel(int x, int y, color_t color)
 {
-	if (x >= 0 || x <= SCREEN_WIDTH && y >= 0 || y <= SCREEN_HEIGHT)
+	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
 		colorBuffer[(SCREEN_WIDTH * y) + x] = color;
 }
