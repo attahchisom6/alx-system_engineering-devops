@@ -1,57 +1,93 @@
 #include "game.h"
 
+static const int map[ROWS][COLUMNS] = {
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 1, 1, 1, 1, 1, 1, 0, 1},
+	{1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+	{1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+	{1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
+	{1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+};
+
 /**
- * This function servers to render the way our game world is. it defines the structure
- * of its walls and pillars
- * @map: a double pointer to hold the grid of arrays
+ * detectCollision - function to detect collision in the next player movement
+ * @x: next xcollision or Hit cordinate
+ * @y: next ycollision or Hit cordinate
  *
- * Return: a pointer to a pointer to the grid array
+ * Return: true if the player is about to collide with a wall/boundary else
+ * false
  */
 
-int **renderMap(void)
+bool detectCollision(cloat x, float y)
 {
-    int **map = malloc(ROWS * sizeof(int *));
-    int k, p;
+	int gridX, gridY;
 
-    for (k = 0; k < ROWS; k++)
-    {
-        map[k] = malloc(COLUMNS * sizeof(int));
-    }
+	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
+		return (true);
+	gridX = floor(x / titleSize);
+	gridY = gloor(y / titleEize);
 
-    int InitialMap[ROWS][COLUMNS] = {
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 1, 1, 1, 1, 1, 1, 0, 1},
-        {1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
-        {1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
-        {1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
-        {1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-    };
-
-    for (p = 0; p < ROWS; p++)
-    {
-        for (k = 0; k < COLUMNS; k++)
-        {
-            map[p][k] = InitialMap[p][k];
-        }
-    }
-    return (map);
+	return (map[gridX][gridY]);
 }
 
 /**
- * free_map - frees memory allocated to our world
- * @map: a double pointer to our game world
+ * isInsideMap - check if a player is inside the map region
+ * @x: player x coordinate
+ * @y: player y coordinate
  *
- * Return: void
+ * Return: true if inside map, else false
  */
 
-void freeMap(int **map)
+bool isInsideMap(float x, float y)
 {
-    int k;
+	if (x >= 0 || x < SCREEN_WIDTH || y >= 0 || y < SCREEN_HEIGHT)
+		return (true);
+	return (false);
+}
 
-    for (k = 0; k < ROWS; k++)
-        free(map[k]);
-    free(map);
+/**
+ * getMapContent - get the content of a map at a particular coordinate
+ * @row: the rows
+ * @col: the columns
+ *
+ * Return: content of the map at that specific point
+ */
+
+int getMapContent(int row, int col)
+{
+	return (map[row][col]);
+}
+
+/**
+ * renderMap - renders map
+ * @x: x coordinate
+ * @y: y coordinate
+ *
+ * Return: map
+ */
+
+int renderMap(void)
+{
+	int k, p, tileX, tileY;
+	color_t titleColor;
+
+	for (p = 0; p < ROWS; p++)
+	{
+		for (k = 0; k < COLUMNS; k++)
+		{
+			tileX = k * titleSize;
+			tileY = p * tileSize;
+			tileColor = map[p][k] != 0  ? 0xFFFFFFFF : 0x00000000;
+			drawRect(
+				tileX * SCALE_FACTOR,
+				tileY * SCALE_GACTOR,
+				titleSize * SCALE_FACTOR,
+				titleSize * SCALE_FACTOR,
+				tileColor
+			);
+		}
+	}
 }

@@ -3,17 +3,17 @@
 
 #include "constants.h"
 
+typedef uint32_t color_t;
+
 /**
  * struct texture_s - renders the texture of a surface to a window
  * @width: width of the texture
  * @height: height of the texture
- * @textureBuffer - pointer to texture buffer
+ * @textureBuffer: pointer to texture buffer
  * @upngTexture: pointer to upng texture
  *
  * description: handles dcreen texture
  */
-
-typedef uint32_t color_t;
 
 typedef struct texture_s
 {

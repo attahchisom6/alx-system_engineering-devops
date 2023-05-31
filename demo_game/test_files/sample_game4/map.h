@@ -3,7 +3,9 @@
 
 #include "constants.h"
 
-int **renderMap(void);
-void freeMap(int **map);
+bool detectCollision(float x, float y);
+bool isInsideMap(float x, float y);
+int getMapContent(int row, int col);
+void renderMap(void);
 
 #endif /* MAP_H */

@@ -10,7 +10,7 @@
 #define SCREEN_HEIGHT (ROWS * titleSize)
 #define NUM_TEXTURES 8
 #define SCALE_FACTOR 0.25
-#define FOV_ANGLE PI / 3
+#define FOV_ANGLE (PI / 3)
 #define PROJ_PLANE ((SCREEN_WIDTH / 2) / tan(FOV_ANGLE / 2))
 #define NUM_RAYS SCREEN_WIDTH
 
