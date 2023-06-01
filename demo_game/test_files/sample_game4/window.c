@@ -50,7 +50,7 @@ bool createWindowRenderer(void)
 
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	colorBuffer = malloc(SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(color_t));
-	colorBufferTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32,
+	colorBufferTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
 			SDL_TEXTUREACCESS_STREAMING, SCREEN_WIDTH, SCREEN_HEIGHT);
 	return (true);
 }
@@ -98,7 +98,7 @@ void renderColorBuffer(void)
 			colorBufferTexture,
 			NULL,
 			colorBuffer,
-			(int)(SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(color_t))
+			(int)(SCREEN_WIDTH * sizeof(color_t))
 		);
 	SDL_RenderCopy(renderer, colorBufferTexture, NULL, NULL);
 	SDL_RenderPresent(renderer);

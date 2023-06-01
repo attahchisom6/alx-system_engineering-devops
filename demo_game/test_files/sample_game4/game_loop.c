@@ -1,50 +1,39 @@
 #include "game.h"
 
-// ...
-
-/**
- * gameLoop - main game loop
- *
- * Return: void
- */
-void gameLoop(void)
+int main(void)
 {
-    bool quit = false;
-    SDL_Event event;
+    bool isRunning = true;
 
-    while (!quit)
+    if (!createWindowRenderer())
     {
-        // Handle events
-        while (SDL_PollEvent(&event) != 0)
+        isRunning = false;
+    }
+
+    while (isRunning)
+    {
+        clearColorBuffer(0xFF000000);
+
+        // Update game state and handle input
+
+        // Render the walls
+        //renderWall();
+	renderMap();
+
+        // Render the color buffer to the screen
+        renderColorBuffer();
+
+        // Process events
+        SDL_Event event;
+        while (SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT)
             {
-                quit = true;
+                isRunning = false;
             }
         }
-
-        // Game logic and rendering
-        // clearColorBuffer(WHITE);
-        // ... Perform other game logic and rendering operations ...
-
-        // Render the frame
-        // renderColorBuffer();
-    }
-}
-
-int main(void)
-{
-    if (!createWindowRenderer())
-    {
-        fprintf(stderr, "Failed to execute the game.");
-        return 1;
     }
 
-    // Start the game loop
-    gameLoop();
-
-    // Cleanup and exit
-    // close();
+    // destroyWindowRenderer();
 
     return 0;
 }

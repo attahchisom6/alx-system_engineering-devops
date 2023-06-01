@@ -21,14 +21,14 @@ static const int map[ROWS][COLUMNS] = {
  * false
  */
 
-bool detectCollision(cloat x, float y)
+bool detectCollision(float x, float y)
 {
 	int gridX, gridY;
 
 	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
 		return (true);
 	gridX = floor(x / titleSize);
-	gridY = gloor(y / titleEize);
+	gridY = floor(y / titleSize);
 
 	return (map[gridX][gridY]);
 }
@@ -69,21 +69,21 @@ int getMapContent(int row, int col)
  * Return: map
  */
 
-int renderMap(void)
+void renderMap(void)
 {
 	int k, p, tileX, tileY;
-	color_t titleColor;
+	color_t tileColor;
 
 	for (p = 0; p < ROWS; p++)
 	{
 		for (k = 0; k < COLUMNS; k++)
 		{
 			tileX = k * titleSize;
-			tileY = p * tileSize;
+			tileY = p * titleSize;
 			tileColor = map[p][k] != 0  ? 0xFFFFFFFF : 0x00000000;
 			drawRect(
 				tileX * SCALE_FACTOR,
-				tileY * SCALE_GACTOR,
+				tileY * SCALE_FACTOR,
 				titleSize * SCALE_FACTOR,
 				titleSize * SCALE_FACTOR,
 				tileColor

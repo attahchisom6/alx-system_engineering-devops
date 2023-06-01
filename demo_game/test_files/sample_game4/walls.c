@@ -137,7 +137,7 @@ void renderWall(void)
 		{
 			distanceFromTop = y + (stripWallHeight / 2) - (SCREEN_HEIGHT / 2);
 			textureOffSetY = distanceFromTop * ((float)texture_height / stripWallHeight);
-			texelColor = wallTextures[6].
+			texelColor = wallTextures[textNum].
 				textureBuffer[textureOffSetX + textureOffSetY * texture_width];
 
 			if (rays[x].isVerticalHit)
