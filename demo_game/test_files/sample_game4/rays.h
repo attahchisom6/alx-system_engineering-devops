@@ -32,4 +32,11 @@ void cast_ray(float rayAngle, int rayId);
 void cast_all_rays(void);
 void renderRays(void);
 
+/*rayMetric functions*/
+float EuclideanDistance(float, float, float, float);
+bool isRayFacingDown(float);
+bool isRayFacingUp(float);
+bool isRayFacingRight(float);
+bool isRayFacingLeft(float);
+
 #endif /* RAYS_H */

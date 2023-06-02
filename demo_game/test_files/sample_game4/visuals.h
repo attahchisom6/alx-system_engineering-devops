@@ -27,7 +27,7 @@ extern texture_t wallTextures[NUM_TEXTURES];
 
 /* visual functions */
 bool createWindowRenderer(void);
-void close(void);
+void destroyWindow(void);
 void clearColorBuffer(color_t color);
 void renderColorBuffer(void);
 void drawPixel(int x, int y, color_t color);

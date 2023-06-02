@@ -56,18 +56,18 @@ bool createWindowRenderer(void)
 }
 
 /**
- * close - close / destroy all session of sdl runnin process
+ * destroyWindow - close / destroy all session of sdl runnin process
  *
  * Return: void
  */
 
-/*void close(void)
+void destroyWindow(void)
 {
 	free(colorBuffer);
 	SDL_DestroyTexture(colorBufferTexture);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
-}*/
+}
 
 /**
  * clearColorBuffer - clear buffer for every framw

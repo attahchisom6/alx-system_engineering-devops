@@ -1,8 +1,7 @@
 #include "game.h"
 
-Player_t player;
 bool gameRunning = false;
-int tickLastFrame
+int ticksLastFrame;
 
 /**
  * setUpGame - initializes data needed for game to run
@@ -13,7 +12,7 @@ int tickLastFrame
 void setUpGame(void)
 {
 	player.x = SCREEN_WIDTH / 2;
-	player.y = SCTEEN_HEIGHT / 2;
+	player.y = SCREEN_HEIGHT / 2;
 	player.width = 5;
 	player.height = 30;
 	player.turnDirection = 0;
@@ -52,10 +51,10 @@ void updateGame(void)
  * Return: void
  */
 
-void render(void)
+void renderGame(void)
 {
 	// renderWall();
-	// renderMap();
+	renderMap();
 	// renderRays();
 	// render player();
 	renderColorBuffer();
@@ -69,7 +68,7 @@ void render(void)
 
 void destroyGame(void)
 {
-	freeWallTexture();
+	// freeWallTexture();
 	destroyWindow();
 }
 
@@ -81,7 +80,7 @@ void destroyGame(void)
 
 int main(void)
 {
-	gameRunning = createWindowRender();
+	gameRunning = createWindowRenderer();
 
 	setUpGame();
 	while (gameRunning)
@@ -90,6 +89,6 @@ int main(void)
 		updateGame();
 		renderGame();
 	}
-	destroyGame();
+	// destroyGame();
 	return (0);
 }

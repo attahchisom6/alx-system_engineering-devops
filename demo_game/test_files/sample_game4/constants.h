@@ -13,5 +13,7 @@
 #define FOV_ANGLE (PI / 3)
 #define PROJ_PLANE ((SCREEN_WIDTH / 2) / tan(FOV_ANGLE / 2))
 #define NUM_RAYS SCREEN_WIDTH
+#define FPS 30
+#define FRAME_TIME_LENGHT (1000 / FPS)
 
 #endif /*CONSTANT NUMBERS */

@@ -34,7 +34,7 @@ void drawRect(int x, int y, int width, int height, color_t color)
 void drawLine(int x0, int y0, int x1, int y1, color_t color)
 {
 	float currentX, currentY, Xincrement, Yincrement;
-	int deltaX, deltaY, k, logestSide;
+	int deltaX, deltaY, k, longestSide;
 
 	deltaX = x1 - x0;
 	deltaY = y1 - y0;

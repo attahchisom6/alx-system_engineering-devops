@@ -4,7 +4,7 @@ ray_t rays[NUM_RAYS];
 Player_t player;
 
 static bool foundHorzWallHit, foundVertWallHit;
-static float horzWallHitX, horzWallHitY, HorzWallContent;
+static float horzWallHitX, horzWallHitY, horzWallContent;
 static float vertWallHitX, vertWallHitY, vertWallContent;
 /**
  * HorzIntersection - find horizontal intersection on a wall
@@ -18,11 +18,11 @@ void HorzIntersection(float rayAngle)
 	float Ystep, Xstep, Yintercept, Xintercept, nextHorzHitX, nextHorzHitY;
 
 	foundHorzWallHit = false;
-	HorzWallHitX = HorzWallHitY = HorzWallContent = 0;
+	horzWallHitX = horzWallHitY = horzWallContent = 0;
 
 	Yintercept = floor(player.y / titleSize) * titleSize;
 	Yintercept += isRayFacingDown(rayAngle) ? titleSize : 0;
-	Xintercept = player.x + (y.player - Yintercept) / tan(rayAngle);
+	Xintercept = player.x + (player.y - Yintercept) / tan(rayAngle);
 
 	Ystep = titleSize;
 	Ystep *= isRayFacingUp(rayAngle) ? -1 : 1;
@@ -37,7 +37,6 @@ void HorzIntersection(float rayAngle)
 	{
 		float testXintercept = nextHorzHitY;
 		float testYintercept = nextHorzHitY + isRayFacingUp(rayAngle) ? -1 : 0;
-+
 
 		if (detectCollision(testXintercept, testYintercept))
 		{
@@ -50,8 +49,8 @@ void HorzIntersection(float rayAngle)
 			break;
 		}
 
-		nextHorzWallHitX = Xstep;
-		nextHorzWallHitY = Ystep;
+		nextHorzHitX = Xstep;
+		nextHorzHitY = Ystep;
 	}
 }
 
@@ -66,13 +65,13 @@ void VertIntercept(float rayAngle)
 	float Xstep, Ystep, Xintercept, Yintercept, nextVertHitX, nextVertHitY;
 
 	foundVertWallHit = false;
-	vertHitWallX = vertHitWallY = vertWallContent = 0;
+	vertWallHitX = vertWallHitY = vertWallContent = 0;
 
-	Xintercept = floor(player.x * titleSize) / titleSize
+	Xintercept = floor(player.x * titleSize) / titleSize;
 	Xintercept += isRayFacingRight(rayAngle) ? titleSize : 0;
 	Yintercept = player.y + (Xintercept - player.x) * tan(rayAngle);
 
-	Xstep = titleSIze;
+	Xstep = titleSize;
 	Xstep *= isRayFacingLeft(rayAngle) ? -1 : 1;
 	Ystep = titleSize * tan(rayAngle);
 	Ystep *= isRayFacingUp(rayAngle) && Ystep > 0 ? -1 : 1;
@@ -83,10 +82,10 @@ void VertIntercept(float rayAngle)
 
 	while (isInsideMap(nextVertHitX, nextVertHitY))
 	{
-		float testXintercept = nextVerHitX + isRayFacingLeft(rayAngle) ? -1 : 0 
+		float testXintercept = nextVerHitX + isRayFacingLeft(rayAngle) ? -1 : 0; 
 		float testYintercept = nextVerHitY;
 
-		if detectCollision(testXintercept, testYintercept)
+		if (detectCollision(testXintercept, testYintercept))
 		{
 			vertWallHitX = nextVertHitX;
 			vertWallHitY = nextVertHitY;

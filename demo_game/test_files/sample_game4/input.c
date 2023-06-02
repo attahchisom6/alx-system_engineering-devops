@@ -1,5 +1,6 @@
 #include "game.h"
 
+
 /**
  * pressedKeys - process input when a key is pressed down
  * @event: union that contain structures for different event types
@@ -46,8 +47,8 @@ void releasedKeys(SDL_Event event)
 	if (event.key.keysym.sym == SDLK_DOWN)
 		player.walkDirection = 0;
 	if (event.key.keysym.sym == SDLK_s)
-		player.walkFirection = 0;
-	if (event.key.keysym.sym == RIGHT)
+		player.walkDirection = 0;
+	if (event.key.keysym.sym == SDLK_RIGHT)
 		player.turnDirection = 0;
 	if (event.key.keysym.sym == SDLK_d)
 		player.turnDirection = 0;
