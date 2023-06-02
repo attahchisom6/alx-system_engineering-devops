@@ -37,4 +37,9 @@ void changeColorItensity(color_t *color, float factor);
 void renderFloor(int BottomTopPixel, color_t *texelColor, int p);
 void renderCeiling(int wallTopPixel, color_t *texelColor, int p);
 void renderWall(void);
+
+/*draw functions */
+void drawRect(int x, int y, int width, int height, color_t color);
+void drawLine(int x0, int y0, int x1, int y1, color_t color);
+
 #endif

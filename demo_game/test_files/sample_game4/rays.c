@@ -1,6 +1,7 @@
 #include "game.h"
 
 ray_t rays[NUM_RAYS];
+Player_t player;
 
 static bool foundHorzWallHit, foundVertWallHit;
 static float horzWallHitX, horzWallHitY, HorzWallContent;
@@ -35,7 +36,7 @@ void HorzIntersection(float rayAngle)
 	while (isInsideMap(nextHorzHitX, nextHorzHitY))
 	{
 		float testXintercept = nextHorzHitY;
-		float testYintercept = nextHorzHitY;
+		float testYintercept = nextHorzHitY + isRayFacingUp(rayAngle) ? -1 : 0;
 +
 
 		if (detectCollision(testXintercept, testYintercept))
@@ -161,7 +162,7 @@ void cast_all_rays(void)
 }
 
 /**
- * renderRays - draws all rays accordingly into the prohection plane
+ * renderRays - draws all rays accordingly into the projection plane
  *
  * Return: void
  */
@@ -174,8 +175,8 @@ void renderRays(void)
 	{
 		drawLine(
 			player.x * SCALE_FACTOR,
+			ray[k].wallHitX	* SCALE_FACTOR,
 			player.y * SCALE_FACTOR,
-			rays[k].walkHitX * SCALE_FACTOR,
 			rays[k].walkHitY * SCALE_FACTOR,
 			0xFF0000FF
 			);
