@@ -26,8 +26,8 @@ typedef struct ray_s
 extern ray_t rays[NUM_RAYS];
 
 /*ray function*/
-void HorzIntersection(float rayAngle);
-void VertIntersection(float rayAngle);
+void HorzIntercept(float rayAngle);
+void VertIntercept(float rayAngle);
 void cast_ray(float rayAngle, int rayId);
 void cast_all_rays(void);
 void renderRays(void);

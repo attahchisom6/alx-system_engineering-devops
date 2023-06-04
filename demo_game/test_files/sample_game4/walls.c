@@ -1,8 +1,6 @@
 #include "game.h"
 
-ray_t rays[NUM_RAYS];
 texture_t wallTextures[NUM_TEXTURES];
-Player_t player;
 
 /**
  * changeColorIntensity - function to unmask a color bit

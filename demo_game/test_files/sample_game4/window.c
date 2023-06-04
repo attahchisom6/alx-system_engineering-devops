@@ -32,7 +32,7 @@ bool createWindowRenderer(void)
 	window = SDL_CreateWindow(
 			"my first game wriiten 9 month into my Alx course", SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED, fullScreenWidth, fullScreenHeight,
-			SDL_WINDOW_SHOWN
+			SDL_WINDOW_BORDERLESS
 		);
 	if (!window)
 	{

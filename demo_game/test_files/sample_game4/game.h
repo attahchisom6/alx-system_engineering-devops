@@ -11,6 +11,8 @@
 #include "rays.h"
 #include "map.h"
 #include "visuals.h"
+#include "upng.h"
+
 extern bool gameRunning;
 
 #endif /* GAME_H */

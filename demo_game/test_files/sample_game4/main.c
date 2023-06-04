@@ -55,7 +55,7 @@ void renderGame(void)
 {
 	// renderWall();
 	renderMap();
-	// renderRays();
+	renderRays();
 	// render player();
 	renderColorBuffer();
 }

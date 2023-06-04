@@ -13,7 +13,7 @@ static float vertWallHitX, vertWallHitY, vertWallContent;
  * Return: void
  */
 
-void HorzIntersection(float rayAngle)
+void HorzIntercept(float rayAngle)
 {
 	float Ystep, Xstep, Yintercept, Xintercept, nextHorzHitX, nextHorzHitY;
 
@@ -82,8 +82,8 @@ void VertIntercept(float rayAngle)
 
 	while (isInsideMap(nextVertHitX, nextVertHitY))
 	{
-		float testXintercept = nextVerHitX + isRayFacingLeft(rayAngle) ? -1 : 0; 
-		float testYintercept = nextVerHitY;
+		float testXintercept = nextVertHitX + isRayFacingLeft(rayAngle) ? -1 : 0; 
+		float testYintercept = nextVertHitY;
 
 		if (detectCollision(testXintercept, testYintercept))
 		{
@@ -95,8 +95,8 @@ void VertIntercept(float rayAngle)
 			foundVertWallHit = true;
 			break;
 		}
-		nextVertWallHitX += Xstep;
-		nextVertWallHitY += Ystep;
+		nextVertHitX += Xstep;
+		nextVertHitY += Ystep;
 	}
 }
 
@@ -110,13 +110,13 @@ void VertIntercept(float rayAngle)
 
 void cast_ray(float rayAngle, int rayId)
 {
-	float horzDistanceHit = vertDistanceHit = 0;
+	float horzDistanceHit = 0, vertDistanceHit = 0;
 
 	rayAngle = remainder(rayAngle, TWO_PI);
 	if (rayAngle < 0)
 		rayAngle = rayAngle + TWO_PI;
-	HorzIntersection(rayAngle);
-	VertIntersection(rayAngle);
+	HorzIntercept(rayAngle);
+	VertIntercept(rayAngle);
 
 	horzDistanceHit = foundHorzWallHit ? EuclideanDistance(player.x, horzWallHitX,
 			player.y, horzWallHitY) : FLT_MAX;
@@ -129,7 +129,7 @@ void cast_ray(float rayAngle, int rayId)
 		rays[rayId].rayAngle = rayAngle;
 		rays[rayId].distanceToWall = horzDistanceHit;
 		rays[rayId].isVerticalHit = false;
-		rays[rayId].wallHitcontent = horzWallContent;
+		rays[rayId].wallHitContent = horzWallContent;
 	}
 	else
 	{
@@ -137,8 +137,8 @@ void cast_ray(float rayAngle, int rayId)
 		rays[rayId].wallHitY = vertWallHitY;
 		rays[rayId].rayAngle = rayAngle;
 		rays[rayId].distanceToWall = vertDistanceHit;
-		rays[rayId].isVertical = true;
-		rays[rayId].hitContent = vertHitWallContent;
+		rays[rayId].isVerticalHit = true;
+		rays[rayId].wallHitContent = vertWallContent;
 	}
 }
 
@@ -174,9 +174,9 @@ void renderRays(void)
 	{
 		drawLine(
 			player.x * SCALE_FACTOR,
-			ray[k].wallHitX	* SCALE_FACTOR,
 			player.y * SCALE_FACTOR,
-			rays[k].walkHitY * SCALE_FACTOR,
+			rays[k].wallHitX * SCALE_FACTOR,
+			rays[k].wallHitY * SCALE_FACTOR,
 			0xFF0000FF
 			);
 	}

@@ -4,8 +4,8 @@
 #define PI 3.1416926535897
 #define TWO_PI 6.2831853071795
 #define titleSize 64
-#define ROWS 9
-#define COLUMNS 10
+#define ROWS 13
+#define COLUMNS 20
 #define SCREEN_WIDTH (COLUMNS * titleSize)
 #define SCREEN_HEIGHT (ROWS * titleSize)
 #define NUM_TEXTURES 8
