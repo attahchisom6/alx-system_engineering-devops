@@ -24,5 +24,5 @@ int main(void)
 		}
 		printf("\n");
 	}
-	free(map);
+	free(map); // ok
 }
